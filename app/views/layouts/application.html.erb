@@ -20,13 +20,15 @@
             <t/> 
             <b><%= link_to "Add job", new_job_path%> </b>
             <t/>
-           <%=link_to "Registry", user_registration_path%>
+           <%=link_to "Registry", new_user_registration_path%>
+            <%=link_to "Sign out", destroy_user_session_path, :method => :delete%>
       </div> 
           </div>
         </div>
      
-      
-      
+      <div class="notice">
+           <%=notice%>
+    </div>
       <div class="content">
         <div class="content-wrapper"><%= yield %></div>
       </div>
