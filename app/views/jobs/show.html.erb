@@ -1,0 +1,51 @@
+
+<h1>Jobs#show</h1>
+
+<h2><%= @job.name %></h2>
+<table border="1" cellpadding="5">
+  <tr>
+  <tr><td> <%=@job.description%></td></tr>
+  <tr><td><%=@job.cost%></td></tr>
+  <tr><td><%=@job.created_at%></td></tr>
+  <tr><td><%=@job.status%></td>
+  <tr><td><%=@job.user.email%></td> 
+  <%if (current_user.id == @job.user_id)%>
+      <tr><td><%@job.candidates.each do |candidate|%>
+        <%=link_to candidate.user.email, job_comments_path(@job, :user_id => candidate.user_id)%>
+  <%end%>    
+ <%end%>
+  </td></tr>
+  <tr><td><%= link_to 'Edit', edit_job_path(@job) %> |
+      <%= link_to 'Destroy', @job, confirm: 'Are you sure?', method: :delete %>
+      | <%if @job.candidates.where(:user_id => current_user.id).count > 0%>
+        <%=link_to 'Go to private', job_candidate_path(@job )%>
+        <%else%>
+        <%=link_to 'Apply', job_candidates_path(@job), :method => :post%> 
+       <%end%>
+       
+
+    </td>
+  </tr>
+</table>
+
+<h3>Коментарі</h3>
+<% @job.comments.public.each do |comment|%>
+  <div class="comment">
+    <b><%=comment.user.email%></b>
+    <small><%=comment.created_at%></small>
+    <br/>
+    <%=simple_format truncate(comment.body)%>
+    </div>
+<%end%>
+
+  
+  
+
+
+
+
+<h3>Додати коментар</h3>
+
+
+<%=render 'comments/form'%>
+

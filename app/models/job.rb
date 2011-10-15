@@ -1,7 +1,7 @@
 class Job < ActiveRecord::Base
   belongs_to :user
   has_many :candidates
-  has_many :comments
+  has_many :comments, :as => :commentable
   belongs_to :worker, :class_name=>"Candidate", :foreign_key => :worker_id
   validates :cost, :name, :presence => :true
   validates :description, :length => {:in => 10..950}

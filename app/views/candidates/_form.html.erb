@@ -1,0 +1,29 @@
+
+<% if @candidate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@candidate.errors.count, "error") %> prohibited this job from being saved:</h2>
+      
+      <ul>
+      <% @candidate.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+      </ul>
+     
+    </div>
+<%end%>
+
+
+
+
+
+<%= form_for [@job, @comment] do |f|  %>
+  <div class="field">
+    <%= f.text_area :body, :size => '40x5' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Add private comment", :name => 'private_comment'%>
+  </div>
+  
+  
+<% end %>

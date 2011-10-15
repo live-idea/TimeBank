@@ -1,0 +1,35 @@
+<table border="1">
+<tr>
+<th>Назва роботи</th>
+
+<th>Опис роботи</th>
+<th>Ціна</th>
+<th>Час створення</th>
+<th>Статус</th>
+<th>Роботодавець</th>
+
+</tr>
+<% @jobs.each do |job| %>
+<tr>
+  <td><%=link_to job.name, job_path(job)%></td>
+ 
+<td> <%=simple_format truncate(job.description, :length=>2000, :separator=>" ", :omission => "... (#{link_to 'більше тексту', job_path(job)})")%></td>
+
+<td><%=job.cost%></td>
+<td><%=job.created_at%></td>
+<td><%=job.status%></td>
+<td><%=job.user.email%></td>
+
+</tr>
+ 
+
+
+   
+
+  
+
+
+<%end%>
+
+
+</table>  

@@ -1,0 +1,27 @@
+<h1>Candidates#show</h1>
+<h2><%= @job.name %></h2>
+<table border="1" cellpadding="5">
+  <tr>
+<tr><td> <%=@job.description%></td></tr>
+
+<tr><td><%=@job.cost%></td></tr>
+<tr><td><%=@job.created_at%></td></tr>
+<tr><td><%=@job.status%></td>
+
+</table>
+
+
+Історія переписки
+
+<% @job.comments.private.each do |comment|%>
+  <div class="comment">
+    <b><%=comment.user.email%></b>
+    <small><%=comment.created_at%></small>
+    <br/>
+    <%=simple_format truncate(comment.body)%>
+    </div>
+<%end%>
+
+<%=render 'candidates/form'%>
+
+
