@@ -1,6 +1,27 @@
 Timebank::Application.routes.draw do
-  devise_for :users
 
+ 
+  resources :comments, :except => [:index,:new,:create]
+
+  resources :candidates do
+    resources :comments
+  end
+  
+  resources :jobs do
+    resources :candidates
+    resources :comments
+  end
+  
+
+  devise_for :users
+  
+  devise_scope :user do
+  get "sign_in", :to => "devise/sessions#new"
+end
+
+  
+  
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -50,7 +71,7 @@ Timebank::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'home#index'
+  root :to => 'jobs#index'
  
   # See how all your routes lay out with "rake routes"
 
