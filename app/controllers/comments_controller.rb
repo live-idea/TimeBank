@@ -1,9 +1,16 @@
 class CommentsController < ApplicationController
   before_filter :authenticate_user!
   def index
-    @comments = Comment.all
-    @job = Job.find(params[:job_id])
-    @comment = @job.comments.new
+    if params[:job_id].present?
+      @job = Job.find(params[:job_id])
+      @comments = @job.comments
+       @comment = @job.comments.new
+    elsif params[:candidate_id].present?
+      @candidate = Candidate.find(params[:candidate_id])
+      @comments = @candidate.comments
+       @comment = @candidate.comments.new
+    end
+    
     user_id = params[:user_id]
     if !user_id
       user_id = current_user.id

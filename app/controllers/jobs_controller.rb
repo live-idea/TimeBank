@@ -8,6 +8,7 @@ class JobsController < ApplicationController
   def show
     @job = Job.find params[:id]
     @comment = Comment.new
+    @candidate = Candidate.find_by_user_id_and_job_id(current_user.id,@job.id)
   end
 
   def new
