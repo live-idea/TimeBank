@@ -1,7 +1,7 @@
 Timebank::Application.routes.draw do
 
  
-  resources :comments, :except => [:index,:new,:create]
+  resources :comments
 
   resources :candidates do
     resources :comments
