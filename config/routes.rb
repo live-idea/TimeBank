@@ -8,7 +8,7 @@ Timebank::Application.routes.draw do
   end
   
   resources :jobs do
-    resources :candidates
+    resources :candidates 
     resources :comments
   end
   

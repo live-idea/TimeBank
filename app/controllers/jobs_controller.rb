@@ -47,7 +47,7 @@ class JobsController < ApplicationController
       @job = Job.find params[:id]
       if (current_user.id == @job.user_id)
         @job.destroy
-        redirect_to Job
+        redirect_to @Job
       else
         flash.now[:notice] = 'You are not owner!'
         render :show
