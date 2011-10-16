@@ -4,18 +4,25 @@
 <h2><%= @job.name %></h2>
 <table border="1" cellpadding="5">
   <tr>
-  <tr><td> <%=@job.description%></td></tr>
-  <tr><td><%=@job.cost%></td></tr>
-  <tr><td><%=@job.created_at%></td></tr>
-  <tr><td><%=@job.status%></td>
-  <tr><td><%=@job.user.email%></td> 
+  <tr><td>Опис</td>
+    <td> <%=@job.description%></td></tr>
+  <tr><td>Ціна</td>
+    <td><%=@job.cost%></td></tr>
+  <tr><td>Створено</td>
+    <td><%=@job.created_at%></td></tr>
+  <tr><td>Статус</td>
+    <td><%=@job.status%></td>
+     <tr><td>Створив</td>
+       <td><%=@job.user.email%></td> 
   <%if (current_user.id == @job.user_id)%>
-      <tr><td><%@job.candidates.each do |candidate|%>
+      <tr><td>Кандидати</td>
+        <td><%@job.candidates.each do |candidate|%>
         <%=link_to candidate.user.email, job_comments_path(@job, :user_id => candidate.user_id)%>
   <%end%>    
  <%end%>
   </td></tr>
-  <tr><td><%= link_to 'Edit', edit_job_path(@job) %> |
+  <tr><td>Моливості</td>
+    <td><%= link_to 'Edit', edit_job_path(@job) %> |
       <%= link_to 'Destroy', @job, confirm: 'Are you sure?', method: :delete %>
       | <%if @job.candidates.where(:user_id => current_user.id).count > 0%>
         <%=link_to 'Go to private', job_candidate_path(@job )%>
