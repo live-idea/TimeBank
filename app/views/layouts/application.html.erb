@@ -11,6 +11,8 @@
     <div class="site">
       <div class="header"><h1>Timebank</h1>
         <%=current_user.email if current_user%>
+        <%if current_user && current_user.bill != nil%> <%=', Your balance is' %> <%=current_user.bill %>
+        <%end%>
       </div>
       <div class="main">
 
@@ -20,10 +22,10 @@
             <t/> 
             <b><%= link_to "Add job", new_job_path%> </b>
             <t/>
-            
-            
+
+
             <%=link_to "Sign out", destroy_user_session_path, :method => :delete if current_user%>
-           
+
             <%=link_to "Registry", new_user_registration_path if !current_user%>
             <%=link_to "Sign in", new_user_session_path if !current_user%>
           </div> 

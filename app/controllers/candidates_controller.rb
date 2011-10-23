@@ -50,5 +50,39 @@ class CandidatesController < ApplicationController
     @candidate.destroy
     redirect_to Candidate
   end
+  
+  def confirm
+    @candidate = Candidate.find params[:id]
+    @job = @candidate.job
+    @job.check_status_owner = true;
+    @job.worker_id = @candidate.id
+    @job.save
+    @comment = @job.comments.new params[:comment]
+    render :show
+  end
 
+  def confirm_cand
+    @candidate = Candidate.find params[:id]
+    @job = @candidate.job
+    @job.check_status_worker = true;
+    @job.status = "in process"
+    @job.save
+    @comment = @job.comments.new params[:comment]
+    render :show
+  end
+  
+  def cancel
+    @candidate = Candidate.find params[:id]
+    @job = @candidate.job
+    @job.check_status_owner = false;
+    @job.check_status_worker = false
+    @job.worker_id = nil
+    @job.status = "free"
+    @job.save
+    @comment = @job.comments.new params[:comment]
+    render :show
+  end
+  
+  
+  
 end

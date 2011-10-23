@@ -4,10 +4,21 @@ Timebank::Application.routes.draw do
   resources :comments
 
   resources :candidates do
+    member do
+      post :confirm
+      post :confirm_cand
+      post :cancel
+    end
     resources :comments
   end
   
   resources :jobs do
+    collection do
+      get :ajax
+    end
+    member do
+      post :done
+    end
     resources :candidates 
     resources :comments
   end

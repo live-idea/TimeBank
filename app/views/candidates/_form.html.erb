@@ -1,15 +1,22 @@
+<%= form_for [@job] do |f|%>
 
-<% if @candidate.errors.any? %>
+  <% if @candidate.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@candidate.errors.count, "error") %> prohibited this job from being saved:</h2>
-      
+
       <ul>
-      <% @candidate.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <% @candidate.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
         <% end %>
       </ul>
-     
+
     </div>
+  <%end%>
+
+  
+
+
+
 <%end%>
 
 
@@ -17,5 +24,3 @@
 
 
 
-  
-  
