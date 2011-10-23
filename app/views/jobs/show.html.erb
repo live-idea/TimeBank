@@ -42,7 +42,7 @@
 
 
     <%end%>
-  <%end%>
+ 
   <%if @job.user_id == current_user.id && @job.status != "finished" %>
     <%=link_to "Job is done", done_job_path(@candidate), :method => :post%>
   <%end%>

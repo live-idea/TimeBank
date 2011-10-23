@@ -40,11 +40,7 @@
             <t/>
 
 
-            <%=link_to "Sign out", destroy_user_session_path, :method => :delete if current_user%>
-
-            <%=link_to "Registry", new_user_registration_path if !current_user%>
-            <%=link_to "Sign in", new_user_session_path if !current_user%>
-
+           
           </div> 
         </div>
       </div>
