@@ -8,13 +8,19 @@ Timebank::Application.routes.draw do
   end
   
   resources :jobs do
+    collection do
+      get :ajax
+    end
+   
     resources :candidates 
     resources :comments
   end
-  
+ 
 
+  
   devise_for :users
   
+
 
   
   # The priority is based upon order of creation:
