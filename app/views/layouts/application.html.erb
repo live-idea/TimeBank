@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
+  <head
+   
+    
     <title>Timebank</title>
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
@@ -10,22 +12,21 @@
   <body>
     <div class="site">
       <div class="header"><h1>Timebank</h1>
-        <%=current_user.email if current_user%>
+        <b><%=current_user.email if current_user%></b>
       </div>
       <div class="main">
 
         <div class="main_menu">
           <div class="content-wrapper">
             <b> <%= link_to "All jobs", jobs_path%>  </b>
-            <t/> 
+            |               
             <b><%= link_to "Add job", new_job_path%> </b>
-            <t/>
-            
-            
-            <%=link_to "Sign out", destroy_user_session_path, :method => :delete if current_user%>
-           
-            <%=link_to "Registry", new_user_registration_path if !current_user%>
-            <%=link_to "Sign in", new_user_session_path if !current_user%>
+            ]          
+           <b> <%=link_to "Sign out", destroy_user_session_path, :method => :delete if current_user%></b>
+            |          
+           <b><%=link_to "Registry", new_user_registration_path if !current_user%></b>
+            |          
+            <b><%=link_to "Sign in", new_user_session_path if !current_user%></b>
           </div> 
         </div>
       </div>

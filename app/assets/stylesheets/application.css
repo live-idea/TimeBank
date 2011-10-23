@@ -6,15 +6,24 @@
  *= require_tree . 
 */
 
-body{
-    background-color: darkgreen;
+body {
+    font-family: verdana, arial, helvetica, sans-serif;
+ background-color: #482; 
+ 
 }
-
+b {
+    color: black;
+ text-decoration: none;
+border-style: initial;
+  border-color: initial;
+}
 .site{
+    
   width: 960px;
   margin: 10px auto;
   background-color: white;
   padding: 10px;
+  color: #000;
 }
 .header{
   text-align: center;    
@@ -24,9 +33,27 @@ body{
 }
 .main{
     min-height: 50px;
+    text-transform: lowercase;
+    text-decoration: none;
+    background-image: url('jarblack4.jpeg');
+    color: #FFF;
 }
+ .content-wrapper {
+  margin: 5px;
+  padding: 5px;
+  text-transform: none;
+  font-size: 80%;
+  font-weight: bold;
+  background-color: #9B7;
+  color: #000;
+  min-height: 25px;
+  width:600px;
+  }
 .content
 {
     min-height: 460px;
     width :80%;
+    background-image: url('jarblack4.jpeg');
+    color: #000;
 }
+
