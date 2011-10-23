@@ -50,5 +50,10 @@ class CandidatesController < ApplicationController
     @candidate.destroy
     redirect_to Candidate
   end
+  
+ 
 
 end
+ def ajax
+    render :text => "будь здоров"
+  end
