@@ -27,6 +27,8 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 gem "thin"
+gem "libv8", :platforms => [:ruby] 
+gem "therubyracer", "0.9.8", :platforms => [:ruby]
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
