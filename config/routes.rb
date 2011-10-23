@@ -22,10 +22,12 @@ Timebank::Application.routes.draw do
     resources :candidates 
     resources :comments
   end
-  
+ 
 
+  
   devise_for :users
   
+
 
   
   # The priority is based upon order of creation:

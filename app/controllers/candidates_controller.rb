@@ -51,6 +51,8 @@ class CandidatesController < ApplicationController
     redirect_to Candidate
   end
   
+
+
   def confirm
     @candidate = Candidate.find params[:id]
     @job = @candidate.job
@@ -91,6 +93,5 @@ class CandidatesController < ApplicationController
     render :show
   end
   
-  
-  
+
 end
