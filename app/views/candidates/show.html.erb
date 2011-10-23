@@ -2,15 +2,25 @@
 <h2><%=link_to @job.name, job_path(@job) %></h2>
 <table border="1" cellpadding="5">
 
-<tr><td> <%=@job.description%></td></tr>
+  <tr><td> <%=@job.description%></td></tr>
 
-<tr><td><%=@job.cost%></td></tr>
-<tr><td><%=@job.created_at%></td></tr>
-<tr><td><%=@job.status%></td>
+  <tr><td><%=@job.cost%></td></tr>
+  <tr><td><%=@job.created_at%></td></tr>
+  <tr><td><%=@job.status%></td>
 
 </table>
 
+<%if @job.user_id == current_user.id && @job.check_status_owner == false%>
+  <%=link_to "Confirm", confirm_candidate_path(@candidate), :method => :post%>
+<%end%>
+<%if @job.worker_id == @candidate.id && @candidate.user_id == current_user.id && @job.check_status_worker == false%>
+  <%=link_to "Confirm", confirm_cand_candidate_path(@candidate), :method => :post%>
+<%end%>
+<%if @job.user_id == current_user.id && @job.worker_id != nil && @job.check_status_worker == false%>
+  <%=link_to "Cancel", cancel_candidate_path(@candidate), :method => :post%>
+<%end%>
 
+</br>
 Історія переписки
 
 <% @candidate.comments.each do |comment|%>
@@ -19,12 +29,13 @@
     <small><%=comment.created_at%></small>
     <br/>
     <%=simple_format truncate(comment.body)%>
-    </div>
+  </div>
 <%end%>
 
 
 
 <%=render 'candidates/form'%>
 <%=render 'comments/form_for_candidate'%>
+
 
 

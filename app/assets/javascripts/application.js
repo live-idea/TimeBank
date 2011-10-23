@@ -5,9 +5,17 @@
 // the compiled file.
 
 
+
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+//= require jquery
+//= require jquery_ujs
+//= require_tree .
+
+
+
 $(document).ready(function(){
     $(".ajax_link").bind("ajax:success",function(event,data){
         alert(data);

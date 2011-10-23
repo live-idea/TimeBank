@@ -49,10 +49,33 @@ class JobsController < ApplicationController
       @job = Job.find params[:id]
       if (current_user.id == @job.user_id)
         @job.destroy
-        redirect_to @Job
+        redirect_to @job
       else
         flash.now[:notice] = 'You are not owner!'
         render :show
       end
     end
+
+ 
+  def ajax
+    render :text => "Thanks"
   end
+  
+  def done
+    @job = Job.find params[:id]
+    @candidate = @job.worker
+    @user_owner = @job.user
+    @user_worker = @candidate.user
+    @user_owner.bill -= @job.cost
+    @user_worker.bill += @job.cost
+    @job.status = "finished"
+    @job.save
+    @user_worker.save
+    @user_owner.save
+    redirect_to jobs_path
+  end
+    end
+
+
+
+
