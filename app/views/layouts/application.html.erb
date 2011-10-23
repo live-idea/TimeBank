@@ -31,11 +31,14 @@
             <b><%= link_to "Add job", new_job_path%> </b>
 
             ]          
+           
             <b> <%=link_to "Sign out", destroy_user_session_path, :method => :delete if current_user%></b>
-            |          
+            |  
+            <b><%=link_to "Sign in", new_user_session_path if !current_user%></b>
+            |
             <b><%=link_to "Registry", new_user_registration_path if !current_user%></b>
             |          
-            <b><%=link_to "Sign in", new_user_session_path if !current_user%></b>
+            
 
             <t/>
 

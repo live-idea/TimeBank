@@ -10,7 +10,7 @@
 
 </table>
 
-<%if @job.user_id == current_user.id && @job.check_status_owner == false%>
+<%if @job.user_id == current_user.id && @job.worker_id == nil%>
   <%=link_to "Confirm", confirm_candidate_path(@candidate), :method => :post%>
 <%end%>
 <%if @job.worker_id == @candidate.id && @candidate.user_id == current_user.id && @job.check_status_worker == false%>

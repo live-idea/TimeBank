@@ -56,11 +56,18 @@ class CandidatesController < ApplicationController
   def confirm
     @candidate = Candidate.find params[:id]
     @job = @candidate.job
+    @user_owner = @job.user
+    if (@user_owner.bill >= @job.cost)
     @job.check_status_owner = true;
     @job.worker_id = @candidate.id
     @job.save
     @comment = @job.comments.new params[:comment]
     render :show
+    else
+      flash.now[:notice] = 'Your balance is not enough to pay'
+      @comment = @job.comments.new params[:comment]
+      render :show
+    end
   end
 
   def confirm_cand
@@ -71,7 +78,7 @@ class CandidatesController < ApplicationController
     @job.save
     @comment = @job.comments.new params[:comment]
     render :show
-  end
+   end
   
   def cancel
     @candidate = Candidate.find params[:id]
