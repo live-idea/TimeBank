@@ -52,10 +52,6 @@ class CandidatesController < ApplicationController
   end
   
 
- 
-
-
-
 
   def confirm
     @candidate = Candidate.find params[:id]
@@ -89,7 +85,5 @@ class CandidatesController < ApplicationController
     render :show
   end
   
-  
-  
-end
 
+end

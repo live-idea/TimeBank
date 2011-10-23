@@ -1,6 +1,7 @@
 
 <%=link_to "Будь здоров", ajax_jobs_path, :remote => true, :class => "ajax_link"%>
 
+
 <h1>Jobs#show</h1>
 
 <h2><%= @job.name %></h2>
@@ -13,49 +14,52 @@
     <td><%=@job.created_at%></td></tr>
   <tr><td>Статус</td>
     <td><%=@job.status%></td>
-   <tr><td>Створив</td>
+
+  <tr><td>Створив</td>
     <td><%=@job.user.email%></td> 
     <%if (current_user.id == @job.user_id)%>
-    
+
     <tr><td>Кандидати</td>
       <td><%@job.candidates.each do |candidate|%>
           <%=link_to candidate.user.email, job_candidate_path(@job, candidate.id)%>
         <%end%>    
       <%end%>
     </td></tr>
-    
-      <tr><td>Можливості</td>
+
+
+  <tr><td>Можливості</td>
     <%if (current_user.id == @job.user_id)%>
-    <td><%= link_to 'Edit', edit_job_path(@job) %> |
-      <%= link_to 'Destroy', @job, confirm: 'Are you sure?', method: :delete %>
-    
-      
-       <%else%> <%if (@job.candidates.where(:user_id => current_user.id).count > 0)  %>
-       <td> <%=link_to 'Go to private', job_candidate_path(@job.id, @candidate)%></td>
+      <td><%= link_to 'Edit', edit_job_path(@job) %> |
+        <%= link_to 'Destroy', @job, confirm: 'Are you sure?', method: :delete %>
+
+
+      <%else%> <%if (@job.candidates.where(:user_id => current_user.id).count > 0)  %>
+        <td> <%=link_to 'Go to private', job_candidate_path(@job.id, @candidate)%></td>
       <%else%> 
-         <td> <%=link_to 'Apply', job_candidates_path(@job), :method => :post%> </td>
-          <%end%>
-
-     
-
-        <%end%>
+        <td> <%=link_to 'Apply', job_candidates_path(@job), :method => :post%> </td>
       <%end%>
-      <%if @job.user_id == current_user.id && @job.status != "finished" %>
-        <%=link_to "Job is done", done_job_path(@candidate), :method => :post%>
-      <%end%>
+
+
+
+    <%end%>
+  <%end%>
+  <%if @job.user_id == current_user.id && @job.status != "finished" %>
+    <%=link_to "Job is done", done_job_path(@candidate), :method => :post%>
+  <%end%>
 
     </td>
   </tr>
 </table>
 
+
 <h3>Коментарі</h3>
 <% @job.comments.public.each do |comment|%>
-  <div class="comment">
-    <b><%=comment.user.email%></b>
-    <small><%=comment.created_at%></small>
-    <br/>
-    <%=simple_format truncate(comment.body)%>
-  </div>
+<div class="comment">
+  <b><%=comment.user.email%></b>
+  <small><%=comment.created_at%></small>
+  <br/>
+  <%=simple_format truncate(comment.body)%>
+</div>
 <%end%>
 
 

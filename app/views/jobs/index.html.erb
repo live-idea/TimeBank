@@ -1,8 +1,7 @@
 
-
-<itable border="1">
-<tr>
-<th>Назва роботи</th>
+<table border="1">
+  <tr>
+    <th>Назва роботи</th>
 
     <th>Опис роботи</th>
     <th>Ціна</th>
@@ -11,17 +10,17 @@
     <th>Роботодавець</th>
 
   </tr>
-   
+
   <% @jobs.each do |job| %>
     <tr>
-      
-       
+
+
       <td><%if current_user%>
-      
-      <%=link_to job.name, job_path(job)%>
-      <%else%>
-      <%=link_to job.name, new_user_session_path%></td>
-      </td>
+
+          <%=link_to job.name, job_path(job)%>
+        <%else%>
+          <%=link_to job.name, new_user_session_path%></td>
+        </td>
       <%end%>
       <td> <%=simple_format truncate(job.description, :length=>2000, :separator=>" ", :omission => "... (#{link_to 'більше тексту', job_path(job)})")%></td>
 
@@ -37,3 +36,4 @@
 
 </table>  
 <%=link_to "Ап-Чхи", ajax_jobs_path, :remote =>true, :class =>"ajax_link"%>
+

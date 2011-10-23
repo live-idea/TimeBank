@@ -60,7 +60,8 @@ class JobsController < ApplicationController
   def ajax
     render :text => "Thanks"
   end
-  
+
+
   def done
     @job = Job.find params[:id]
     @candidate = @job.worker
@@ -74,8 +75,9 @@ class JobsController < ApplicationController
     @user_owner.save
     redirect_to jobs_path
   end
-    end
 
+  
+end
 
 
 
